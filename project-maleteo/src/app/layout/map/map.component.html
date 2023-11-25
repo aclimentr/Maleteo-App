@@ -1,0 +1,26 @@
+<input #search placeholder="Ingrese un lugar para buscar" />
+<google-map
+  height="300px"
+  width="100px"
+  [zoom]="zoom"
+  [center]="center"
+  [options]="options"
+  (mapClick)="addMarker($event)"
+  (mapLoad)="onMapLoad($event)"
+
+>
+
+    <map-marker *ngFor="let position of markerPositions" [position]="position" [options]="markerOptions"></map-marker>
+
+  <map-marker
+    #markerElem
+    *ngFor="let marker of markers"
+    [position]="marker.position"
+    [label]="marker.label"
+    [title]="marker.title"
+    [options]="marker.options"
+  >
+  </map-marker>
+
+  <map-info-window>{{ infoContent }}</map-info-window>
+</google-map>
